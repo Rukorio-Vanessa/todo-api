@@ -1,0 +1,109 @@
+Started GET "/" for 127.0.0.1 at 2023-03-22 10:33:32 +0300
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.7.4/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/share/rvm/gems/ruby-2.7.4/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 12.3ms | Allocations: 767)
+Completed 200 OK in 195ms (Views: 148.3ms | ActiveRecord: 0.0ms | Allocations: 6583)
+
+
+Started GET "/" for 127.0.0.1 at 2023-03-22 10:34:05 +0300
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.7.4/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/share/rvm/gems/ruby-2.7.4/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 2.0ms | Allocations: 449)
+Completed 200 OK in 7ms (Views: 5.4ms | ActiveRecord: 0.0ms | Allocations: 1165)
+
+
+  [1m[35m (157.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (144.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20230322074139)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar NOT NULL, "email" varchar NOT NULL, "password_digest" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230322074139"]]
+  [1m[36mTRANSACTION (174.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2023-03-22 07:53:43.616664"], ["updated_at", "2023-03-22 07:53:43.616664"]]
+  [1m[36mTRANSACTION (114.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/users" for 127.0.0.1 at 2023-03-22 11:24:53 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (15.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+SyntaxError (/home/student/Documents/Moringa/Phase-4/todo-rails-backend/todo-api/app/controllers/users_controller.rb:14: syntax error, unexpected local variable or method, expecting ')'
+                         data: user.errors)
+                         ^~~~
+/home/student/Documents/Moringa/Phase-4/todo-rails-backend/todo-api/app/controllers/users_controller.rb:14: syntax error, unexpected ')', expecting `end'
+...             data: user.errors)
+...                              ^
+/home/student/Documents/Moringa/Phase-4/todo-rails-backend/todo-api/app/controllers/users_controller.rb:23: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/users_controller.rb:14: syntax error, unexpected local variable or method, expecting ')'
+app/controllers/users_controller.rb:14: syntax error, unexpected ')', expecting `end'
+app/controllers/users_controller.rb:23: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/users_controller.rb:14: syntax error, unexpected local variable or method, expecting ')'
+app/controllers/users_controller.rb:14: syntax error, unexpected ')', expecting `end'
+app/controllers/users_controller.rb:23: syntax error, unexpected end-of-input, expecting `end'
+Started POST "/users" for 127.0.0.1 at 2023-03-22 11:25:50 +0300
+Processing by UsersController#register as */*
+  Parameters: {"username"=>"vanessa_kr", "email"=>"vanessa@gmail.com", "password"=>"[FILTERED]", "user"=>{"username"=>"vanessa_kr", "email"=>"vanessa@gmail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: register, request: #<ActionDispatch::Request:0x00007f19f839c088>, params: {"username"=>"vanessa_kr", "email"=>"vanessa@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"register", "user"=>{"username"=>"vanessa_kr", "email"=>"vanessa@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mUser Exists? (32.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "vanessa_kr"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "vanessa@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "vanessa_kr"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `register'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "vanessa@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `register'
+Completed 500 Internal Server Error in 512ms (ActiveRecord: 35.3ms | Allocations: 42136)
+
+
+  
+NoMethodError (undefined method `rnder' for #<UsersController:0x0000000000b900>
+Did you mean?  render):
+  
+app/controllers/application_controller.rb:3:in `app_response'
+app/controllers/users_controller.rb:12:in `register'
+Started POST "/users" for 127.0.0.1 at 2023-03-22 11:26:47 +0300
+Processing by UsersController#register as */*
+  Parameters: {"username"=>"vanessa_kr", "email"=>"vanessa@gmail.com", "password"=>"[FILTERED]", "user"=>{"username"=>"vanessa_kr", "email"=>"vanessa@gmail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: register, request: #<ActionDispatch::Request:0x00007f19e8cf29a8>, params: {"username"=>"vanessa_kr", "email"=>"vanessa@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"register", "user"=>{"username"=>"vanessa_kr", "email"=>"vanessa@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "vanessa_kr"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "vanessa@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "vanessa_kr"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `register'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "vanessa@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `register'
+Completed 200 OK in 329ms (Views: 112.5ms | ActiveRecord: 1.5ms | Allocations: 8292)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-03-22 11:27:00 +0300
+Processing by UsersController#register as */*
+  Parameters: {"username"=>"van_kr", "email"=>"vanessa@gmail.com", "password"=>"[FILTERED]", "user"=>{"username"=>"van_kr", "email"=>"vanessa@gmail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: register, request: #<ActionDispatch::Request:0x00007f19e8aaf3d0>, params: {"username"=>"van_kr", "email"=>"vanessa@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"register", "user"=>{"username"=>"van_kr", "email"=>"vanessa@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "van_kr"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "vanessa@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["username", "van_kr"], ["email", "vanessa@gmail.com"], ["password_digest", "[FILTERED]"], ["created_at", "2023-03-22 08:27:00.549120"], ["updated_at", "2023-03-22 08:27:00.549120"]]
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (69.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? AND "users"."id" != ? LIMIT ?[0m  [["username", "van_kr"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `register'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? AND "users"."id" != ? LIMIT ?[0m  [["email", "vanessa@gmail.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `register'
+Completed 200 OK in 285ms (Views: 0.4ms | ActiveRecord: 70.4ms | Allocations: 4717)
+
+
