@@ -1,6 +1,5 @@
 class TodosController < ApplicationController
     before_action :session_expired?
-    rescue_from ArguementError, with: :check_for_invalid_priority
 
     def create
         todo = user.todos.create(todo_params)
@@ -11,12 +10,19 @@ class TodosController < ApplicationController
         end
     end
 
+    def update
+        todo = user.todos.find(params[:id]).update(todo_params)
+        if todo
+            app_response(data: {info: "Todo updated successfully"})
+        else
+            app_response(message: "failed",  data: {info: "Something went wrong, could not update todo"})
+        end
+    end
+
     private
     def todo_params
         params.permit(:title, :description, :status, :priority)
     end
 
-    def check_for_invalid_priority
-        app_response(message: "failed", status: unprocessaable_entity, data: {info: "invalid priority"})
-    end
+   
 end
