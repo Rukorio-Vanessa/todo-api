@@ -159,3 +159,121 @@ Processing by UsersController#index as */*
 Completed 200 OK in 9ms (Views: 7.3ms | ActiveRecord: 1.2ms | Allocations: 3369)
 
 
+Started POST "/users" for 127.0.0.1 at 2023-03-23 11:17:31 +0300
+Processing by UsersController#register as */*
+  Parameters: {"username"=>"kira", "email"=>"kira@gmail.com", "password"=>"[FILTERED]", "user"=>{"username"=>"kira", "email"=>"kira@gmail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: register, request: #<ActionDispatch::Request:0x00007f24a88cfb80>, params: {"username"=>"kira", "email"=>"kira@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"register", "user"=>{"username"=>"kira", "email"=>"kira@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `register'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "kira"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `register'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "kira@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `register'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "kira"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `register'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "kira@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `register'
+Completed 200 OK in 361ms (Views: 132.7ms | ActiveRecord: 0.7ms | Allocations: 5818)
+
+
+Started POST "/user/login" for 127.0.0.1 at 2023-03-23 11:18:05 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"kira@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"kira@gmail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: login, request: #<ActionDispatch::Request:0x00007f2488110f40>, params: {"email"=>"kira@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"login", "user"=>{"email"=>"kira@gmail.com"}} }[0m
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: login, request: #<ActionDispatch::Request:0x00007f2488110f40>, params: {"email"=>"kira@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"login", "user"=>{"email"=>"kira@gmail.com"}} }[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username = NULL OR email = 'kira@gmail.com') ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:27:in `login'
+Completed 200 OK in 10ms (Views: 0.7ms | ActiveRecord: 0.8ms | Allocations: 1105)
+
+
+Started POST "/user/login" for 127.0.0.1 at 2023-03-23 11:18:27 +0300
+Processing by UsersController#login as */*
+  Parameters: {"username"=>"kira", "email"=>"kira@gmail.com", "password"=>"[FILTERED]", "user"=>{"username"=>"kira", "email"=>"kira@gmail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: login, request: #<ActionDispatch::Request:0x00007f2490525600>, params: {"username"=>"kira", "email"=>"kira@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"login", "user"=>{"username"=>"kira", "email"=>"kira@gmail.com"}} }[0m
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: login, request: #<ActionDispatch::Request:0x00007f2490525600>, params: {"username"=>"kira", "email"=>"kira@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"login", "user"=>{"username"=>"kira", "email"=>"kira@gmail.com"}} }[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username = 'kira' OR email = 'kira@gmail.com') ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:27:in `login'
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 924)
+
+
+  [1m[36mActiveRecord::SchemaMigration Pluck (30.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateTodos (20230323082540)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE TABLE "todos" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar NOT NULL, "description" text NOT NULL, "status" integer DEFAULT 0 NOT NULL, "priority" integer DEFAULT 0 NOT NULL, "user_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_d94154aa95"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE INDEX "index_todos_on_user_id" ON "todos" ("user_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230323082540"]]
+  [1m[36mTRANSACTION (131.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/todos" for 127.0.0.1 at 2023-03-23 11:56:17 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (23.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+SyntaxError (/home/student/Documents/Moringa/Phase-4/todo-rails-backend/todo-api/app/controllers/todos_controller.rb:16: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/todos_controller.rb:16: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/todos_controller.rb:16: syntax error, unexpected end-of-input, expecting `end'
+Started POST "/users/login" for 127.0.0.1 at 2023-03-23 12:00:42 +0300
+Processing by UsersController#login as */*
+  Parameters: {"username"=>"rukorio", "password"=>"[FILTERED]", "user"=>{"username"=>"rukorio"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: login, request: #<ActionDispatch::Request:0x00007fbcfc0bf390>, params: {"username"=>"rukorio", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"login", "user"=>{"username"=>"rukorio"}} }[0m
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: login, request: #<ActionDispatch::Request:0x00007fbcfc0bf390>, params: {"username"=>"rukorio", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"login", "user"=>{"username"=>"rukorio"}} }[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (username = 'rukorio' OR email = NULL) ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:27:in `login'
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: login, request: #<ActionDispatch::Request:0x00007fbcfc0bf390>, params: {"username"=>"rukorio", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"login", "user"=>{"username"=>"rukorio"}} }[0m
+Completed 200 OK in 495ms (Views: 0.2ms | ActiveRecord: 3.0ms | Allocations: 36617)
+
+
+Started POST "/todos" for 127.0.0.1 at 2023-03-23 12:02:02 +0300
+  
+SyntaxError (/home/student/Documents/Moringa/Phase-4/todo-rails-backend/todo-api/app/controllers/todos_controller.rb:16: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/todos_controller.rb:16: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/todos_controller.rb:16: syntax error, unexpected end-of-input, expecting `end'
+Started POST "/todos" for 127.0.0.1 at 2023-03-23 12:03:59 +0300
+  
+SyntaxError (/home/student/Documents/Moringa/Phase-4/todo-rails-backend/todo-api/app/controllers/todos_controller.rb:16: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/todos_controller.rb:16: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/todos_controller.rb:16: syntax error, unexpected end-of-input, expecting `end'
+Started POST "/todos" for 127.0.0.1 at 2023-03-23 12:04:37 +0300
+Processing by TodosController#create as */*
+  Parameters: {"title"=>"Add todo endpoint", "description"=>"ensure a todo endpoint is added to your project", "priority"=>2, "todo"=>{"title"=>"Add todo endpoint", "description"=>"ensure a todo endpoint is added to your project", "priority"=>2}}
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 1.5ms | Allocations: 213)
+
+
+  
+TypeError (no implicit conversion of Time into String):
+  
+app/controllers/application_controller.rb:24:in `session_expired?'
+Started POST "/todos" for 127.0.0.1 at 2023-03-23 12:05:38 +0300
+Processing by TodosController#create as */*
+  Parameters: {"title"=>"Add todo endpoint", "description"=>"ensure a todo endpoint is added to your project", "priority"=>2, "todo"=>{"title"=>"Add todo endpoint", "description"=>"ensure a todo endpoint is added to your project", "priority"=>2}}
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.6ms | Allocations: 172)
+
+
+  
+TypeError (no implicit conversion of Time into String):
+  
+app/controllers/application_controller.rb:24:in `session_expired?'
+Started POST "/todos" for 127.0.0.1 at 2023-03-23 12:06:14 +0300
+Processing by TodosController#create as */*
+  Parameters: {"title"=>"Add todo endpoint", "description"=>"ensure a todo endpoint is added to your project", "priority"=>2, "todo"=>{"title"=>"Add todo endpoint", "description"=>"ensure a todo endpoint is added to your project", "priority"=>2}}
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.5ms | Allocations: 172)
+
+
+  
+TypeError (no implicit conversion of Time into String):
+  
+app/controllers/application_controller.rb:24:in `session_expired?'
+Started POST "/todos" for 127.0.0.1 at 2023-03-23 12:29:30 +0300
+  
+SyntaxError (/home/student/Documents/Moringa/Phase-4/todo-rails-backend/todo-api/app/controllers/application_controller.rb:37: syntax error, unexpected `end', expecting end-of-input):
+  
+app/controllers/application_controller.rb:37: syntax error, unexpected `end', expecting end-of-input
+app/controllers/application_controller.rb:37: syntax error, unexpected `end', expecting end-of-input
+app/controllers/todos_controller.rb:1:in `<main>'

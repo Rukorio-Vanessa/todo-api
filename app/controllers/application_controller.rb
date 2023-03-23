@@ -3,8 +3,8 @@ class ApplicationController < ActionController::API
     
     def app_response(message: "success", status: 200, data: nil)
         render json:{message: message,
-                    data: data,
-                    status: status}
+                     data: data,
+                     status: status}
     end
     #ensure user id is being stored in cookies
     def save_user(id)
@@ -26,7 +26,13 @@ class ApplicationController < ActionController::API
         unless time_diff > 0
             app_response(message: 'failed',
                          status: 401,
-                         data: {info: "You're ssion has expired. Plese login again to continue."})
+                         data: {info: "You're session has expired. Please login again to continue."})
         end
     end
+    
+    #get logged in user id
+    def user
+        User.find(session[:uid].to_i)
+    end
+
 end
